@@ -7,16 +7,19 @@
 ;
 ; Based on Stephen Fewer's direct API calls
 ;
-; Arguments: RAX = module pointer
+; Arguments: R15 = module pointer
 ;            rcx, rdx, r8, r9, stack = normal function call params
 ;            R11D = hash
 ;
 ; Clobbers: RAX, RCX, RDX, R8, R9, R10, R11
 ; Notes: block_api loads from the PEB. This is more direct. Caller must be sure
-;        there is an export in this module.
+;        there is an export in this module. Do not reserve shadow space.
 ;
 
 block_api_direct:
+
+  mov rax, r15            ; make copy of module
+
   push r9                  ; Save parameters
   push r8
   push rdx
