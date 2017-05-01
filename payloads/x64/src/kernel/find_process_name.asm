@@ -17,12 +17,12 @@ find_process_name:
 
 _find_process_name_loop_pid:
   add cx, 0x4
-  cmp cx, 0x10000
-  jge _find_process_name_failure
+  cmp ecx, 0x10000
+  jge kernel_exit
 
                                                 ; rcx = PID
                                                 ; rdx = *PEPROCESS
-  mov r11d, PSLOOKUPPROCESSBYPROCESSID_HASH
+  mov r11d, PSLOOKUPPROCESSBYID_HASH
   call block_api_direct
   add rsp, 0x20
 
@@ -36,5 +36,8 @@ _find_process_name_loop_pid:
   add rsp, 0x20
   pop rcx
 
-  xor rax, rax
-  ret
+  mov rsi, rax
+  call calc_hash
+
+  cmp r9d, r10d
+  jne _find_process_name_loop_pid
