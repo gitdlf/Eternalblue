@@ -19,7 +19,6 @@ _find_process_name_loop_pid:
   add cx, 0x4
   cmp ecx, 0x10000
   jge kernel_exit
-
                                                 ; rcx = PID
                                                 ; rdx = *PEPROCESS
   mov r11d, PSLOOKUPPROCESSBYID_HASH

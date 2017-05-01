@@ -44,15 +44,8 @@ _block_api_direct_get_next_func:
   dec rcx                     ; decrement NumberOfFunctions
   mov esi, dword [r8+rcx*4]   ; Get rva of next module name
   add rsi, rdx                ; Add the modules base address
-  xor r9, r9                  ; Clear hash
 
-_block_api_direct_loop_funcname:
-  xor rax, rax
-  lodsb                                 ; Read in the next byte of the ASCII function name
-  ror r9d, 13                           ; Rotate right our hash value
-  add r9d, eax                          ; Add the next byte of the name
-  cmp al, ah                            ; Compare AL to AH (\0)
-  jne _block_api_direct_loop_funcname
+  call calc_hash
 
   cmp r9d, r10d                         ; Compare the hashes
   jnz _block_api_direct_get_next_func   ; try the next function

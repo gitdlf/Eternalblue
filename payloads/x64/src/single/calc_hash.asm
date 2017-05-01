@@ -7,7 +7,7 @@
 ;
 
 calc_hash:
-  xor r9d, r9d
+  xor r9, r9
 
 _calc_hash_loop:
   xor eax, eax
