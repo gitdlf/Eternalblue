@@ -55,7 +55,7 @@ _block_api_direct_loop_funcname:
   jne _block_api_direct_loop_funcname
 
   cmp r9d, r10d                         ; Compare the hashes
-  jnz _block_api_direct_next_func       ; try the next function
+  jnz _block_api_direct_get_next_func   ; try the next function
 
 
 _block_api_direct_finish:
