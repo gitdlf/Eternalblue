@@ -11,7 +11,7 @@
 ;            rcx, rdx, r8, r9, stack = normal function call params
 ;            R11D = hash
 ;
-; Clobbers: RAX, RCX, RDX, R8, R9, R10, R11
+; Clobbers: RAX, RCX, RDX, R8, R9, R11
 ; Notes: block_api loads from the PEB. This is more direct. Caller must be sure
 ;        there is an export in this module. Do not reserve shadow space.
 ;
@@ -29,8 +29,8 @@ block_api_direct:
   mov eax, dword [rdx+60]  ; Get PE header e_lfanew
   add rax, rdx
   mov eax, dword [rax+136] ; Get export tables RVA
-  test rax, rax                         ; No test if export address table is present
-  jz _block_api_not_found                         ; Callers job
+  ;test rax, rax                         ; No test if export address table is present
+  ;jz _block_api_not_found                         ; Callers job
 
   add rax, rdx
   push rax                 ; save EAT
@@ -47,7 +47,7 @@ _block_api_direct_get_next_func:
 
   call calc_hash
 
-  cmp r9d, r10d                         ; Compare the hashes
+  cmp r9d, r11d                         ; Compare the hashes
   jnz _block_api_direct_get_next_func   ; try the next function
 
 
@@ -66,12 +66,9 @@ _block_api_direct_finish:
   pop rdx
   pop r8
   pop r9
-  pop r10                     ; pop ret addr
+  pop r11                     ; pop ret addr
 
   sub rsp, 0x20               ; reserve shadow space
-  push r10                    ; push ret addr
+  push r11                    ; push ret addr
 
   jmp rax
-
-_block_api_not_found:
-  int 3
