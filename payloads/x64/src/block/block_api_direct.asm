@@ -29,8 +29,8 @@ block_api_direct:
   mov eax, dword [rdx+60]  ; Get PE header e_lfanew
   add rax, rdx
   mov eax, dword [rax+136] ; Get export tables RVA
-                           ; No test if export address table is present
-                           ; Callers job
+  test rax, rax                         ; No test if export address table is present
+  jz _block_api_not_found                         ; Callers job
 
   add rax, rdx
   push rax                 ; save EAT
@@ -72,3 +72,6 @@ _block_api_direct_finish:
   push r10                    ; push ret addr
 
   jmp rax
+
+_block_api_not_found:
+  int 3
