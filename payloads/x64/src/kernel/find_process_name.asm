@@ -21,7 +21,7 @@ _find_process_name_loop_pid:
   jge kernel_exit
                                                 ; rcx = PID
                                                 ; rdx = *PEPROCESS
-  mov r11d, PSLOOKUPPROCESSBYID_HASH
+  mov r11d, PSLOOKUPPROCESSBYPROCESSID_HASH
   call block_api_direct
   add rsp, 0x20
 
