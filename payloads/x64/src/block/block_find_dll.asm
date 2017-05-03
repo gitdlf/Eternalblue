@@ -20,6 +20,7 @@ block_find_dll:
   mov rdx, [rdx + 32]         ; InMemoryOrder list
 
 _block_find_dll_next_mod:
+  mov rdx, [rdx]
   mov rsi, [rdx + 80]         ; unicode string
   movzx rcx, word [rdx + 74]  ; rcx = len
 
@@ -40,5 +41,5 @@ _block_find_dll_not_lowercase:
   cmp r9d, r11d
   jnz _block_find_dll_next_mod
 
-  mov rax, rdx
+  mov rax, [rdx + 32]
   ret
