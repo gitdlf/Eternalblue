@@ -1,5 +1,5 @@
 #=============================================================================#
-# A simple python build script to build the singles/stages/stagers and 
+# A simple python build script to build the singles/stages/stagers and
 # some usefull information such as offsets and a hex dump. The binary output
 # will be placed in the bin directory. A hex string and usefull comments will
 # be printed to screen.
@@ -41,12 +41,12 @@ def build( name ):
     print "[-] Unable to locate '%s.asm' in the src directory" % name
 #=============================================================================#
 def xmit_dump_ruby( data, length=16 ):
-  dump = ""
+  dump = "sc = \"\\xcc\"\n"
   for i in xrange( 0, len( data ), length ):
     bytes = data[ i : i+length ]
-    hex = "\"%s\"" % ( ''.join( [ "\\x%02X" % ord(x) for x in bytes ] ) )
+    hex = "sc += \"%s\"" % ( ''.join( [ "\\x%02X" % ord(x) for x in bytes ] ) )
     if i+length <= len(data):
-      hex += " +"
+      hex += " "
     dump += "%s\n" % ( hex )
   print dump
 #=============================================================================#

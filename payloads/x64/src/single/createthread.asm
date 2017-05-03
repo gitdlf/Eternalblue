@@ -16,10 +16,6 @@
   cld
   jmp start
 
-%include "./src/single/calc_hash.asm"
-%include "./src/block/block_find_dll.asm"
-%include "./src/block/block_api_direct.asm"
-
 start:
 
   mov r11d, 0x92AF16DA ; KERNEL32_DLL_HASH
