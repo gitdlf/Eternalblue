@@ -16,8 +16,14 @@
   cld
   jmp start
 
+%include "./src/block/block_find_dll.asm"
 
 start:
+
+  mov r11d, 0;KERNEL32_DLL_HASH
+  call block_find_dll
+  mov r15, rax
+
   xor ecx, ecx
 
   push rcx
