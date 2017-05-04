@@ -16,14 +16,14 @@ find_thread:
 
   mov rax, r15
   mov r11d, PSGETCURRENTPROCESS_HASH
-  call block_api_direct
+  call x64_block_api_direct
 
   add rax, THREADLISTHEAD_OFFSET          ; PEPROCESS->ThreadListHead
   mov rsi, rax
 
   mov rax, r15
   mov r11d, KEGETCURRENTTHREAD_HASH
-  call block_api_direct
+  call x64_block_api_direct
 
   mov rcx, rsi                            ; save ThreadListHead
 
