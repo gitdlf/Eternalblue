@@ -8,7 +8,7 @@
 ; Based on EQGRP code
 ;
 ; Arguments: r15 = base of nt
-; Clobbers: RAX, RSI
+; Clobbers: RAX, RSI, RCX
 ; Return: RCX = delta offset
 ;
 
