@@ -9,7 +9,7 @@
 ;
 ; Arguments: r15 = base of nt
 ; Clobbers: RAX, RSI
-; Return: delta offset
+; Return: RCX = delta offset
 ;
 
 THREADLISTHEAD_OFFSET     equ   0x308
