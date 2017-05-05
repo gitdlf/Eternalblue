@@ -5,9 +5,11 @@
 ; Copyright: (c) 2017 RiskSense, Inc.
 ; License: Apache 2.0
 ;
+; Based on EQGRP code
+;
 ; Arguments: r15 = base of nt
 ; Clobbers: RAX, RSI
-; Return:
+; Return: delta offset
 ;
 
 THREADLISTHEAD_OFFSET     equ   0x308
