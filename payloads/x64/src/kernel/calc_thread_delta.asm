@@ -1,5 +1,5 @@
 ;
-; Windows x64 Kernel Get User Thread Delta
+; Windows x64 Kernel Get ETHREAD.ThreadListEntry Delta
 ;
 ; Author: Sean Dillon <sean.dillon@risksense.com> (@zerosum0x0)
 ; Copyright: (c) 2017 RiskSense, Inc.
