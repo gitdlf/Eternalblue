@@ -1,13 +1,15 @@
 ;
-; Windows x64 Kernel Get User Thread Delta
+; Windows x64 Kernel Get ETHREAD.ThreadListEntry Delta
 ;
 ; Author: Sean Dillon <sean.dillon@risksense.com> (@zerosum0x0)
 ; Copyright: (c) 2017 RiskSense, Inc.
 ; License: Apache 2.0
 ;
+; Based on EQGRP code
+;
 ; Arguments: r15 = base of nt
-; Clobbers: RAX, RSI
-; Return:
+; Clobbers: RAX, RSI, RCX
+; Return: RCX = delta offset
 ;
 
 THREADLISTHEAD_OFFSET     equ   0x308
