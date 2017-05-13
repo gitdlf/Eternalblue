@@ -19,6 +19,12 @@ Windows ring 0 shellcode is being crafted so that instead of DoublePulsar, the t
 - https://countercept.com/our-thinking/analyzing-the-doublepulsar-kernel-dll-injection-technique/
 - https://www.rapid7.com/db/modules/auxiliary/scanner/smb/smb_ms17_010
 
+## Disclaimer
+This code serves an important business purpose for penetration testers and others to show impact to organizations, without having to run NSA malware binaries. We must ask that you use these tools for their intended, lawful purposes, and only with consent of targets.
+
+### License
+Apache 2.0 and MSF
+
 ### Credits
 - @zerosum0x0
 - @jennamagius
