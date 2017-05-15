@@ -29,7 +29,9 @@ Currently, support includes:
 - Windows 7 SP1 x64
 - Windows 2008 R2 SP1 x64
 
-Support for Windows XP and x86 platforms is underway. Due to the sensitive nature of this vulnerability we don't have immediate plans to support versions of the exploit not already included in FuzzBunch.
+Support for Windows XP and x86 platforms is underway. 
+
+Due to the sensitive nature of this vulnerability we don't have immediate plans to support versions of the exploit not already included in FuzzBunch.
 
 ## Payloads
 Windows ring 0 shellcode has been crafted so that instead of DoublePulsar, the transition from ring 0 to ring 3 and running usermode payloads, directly with or without DLL, is done in a single step. The size of the code has also being reworked, as the original shellcode appears to be compiler output, in order to accomodate more complex userland payloads in the first stage.
